@@ -6,9 +6,7 @@ game.StarterGui:SetCore("SendNotification", {
     Duration = 3;
 })
 
-
 repeat task.wait() until game.Players.LocalPlayer.Character.HumanoidRootPart
-
 
 task.wait(5)
 
@@ -37,8 +35,7 @@ function RedeemCodes()
     for i,v in pairs(game:GetService("ReplicatedStorage").Events.Codes.AvailableCodes:GetChildren()) do
         if v:IsA("Folder") then
             for s,a in pairs(v:GetChildren()) do
-                if a:FindFirstChild("Expire") then
-                else
+                if not a:FindFirstChild("Expire") then
                     game:GetService("ReplicatedStorage").Events.Codes.RedeemCodes:FireServer(ohNumber1, a.Name)
                 end
             end
@@ -52,7 +49,7 @@ function UpgradeStat(int)
     game:GetService("ReplicatedStorage").Events.Spent.UpgradeStat:FireServer(int)
 end
 
--- auto ability farn
+-- auto ability farm
 
 function FarmAbility(s)
     if s == "Mobility" then
@@ -105,163 +102,166 @@ function GetClosestEnemy(folderName)
 end
 
 function StartSideTask(s)
-    if s == "Goblin" then
-        local args = {
-            [1] = 2;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Thugs" then
-        local args = {
-            [1] = 3;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Gym Rats" then
-        local args = {
-            [1] = 4;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Veterans" then
-        local args = {
-            [1] = 5;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Yakuza" then
-        local args = {
-            [1] = 6;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Samurai" then
-        local args = {
-            [1] = 8;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Mutants" then
-        local args = {
-            [1] = 7;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Animatronics" then
-        local args = {
-            [1] = 10;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Ninja" then
-        local args = {
-            [1] = 9;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Temple Protectors" then
-        local args = {
-            [1] = 11;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Demons" then
-        local args = {
-            [1] = 12;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Judgers" then
-        local args = {
-            [1] = 13;
-        }
-        
+    local args = {[1] = ({
+        Goblin = 2, Thugs = 3, GymRats = 4, Veterans = 5, Yakuza = 6, Samurai = 8, Mutants = 7, Animatronics = 10,
+        Ninja = 9, TempleProtectors = 11, Demons = 12, Judgers = 13
+    })[s]}
+    
+    if args[1] then
         game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartSideTask", 9e9):FireServer(unpack(args))
     end
 end
 
 function ClaimSideTask(s)
-    if s == "Goblin" then
-        local args = {
-            [1] = 2;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Thugs" then
-        local args = {
-            [1] = 3;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Gym Rats" then
-        local args = {
-            [1] = 4;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Veterans" then
-        local args = {
-            [1] = 5;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Yakuza" then
-        local args = {
-            [1] = 6;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Samurai" then
-        local args = {
-            [1] = 8;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Mutants" then
-        local args = {
-            [1] = 7;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Animatronics" then
-        local args = {
-            [1] = 10;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Ninja" then
-        local args = {
-            [1] = 9;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Temple Protectors" then
-        local args = {
-            [1] = 11;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Demons" then
-        local args = {
-            [1] = 12;
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimSideTask", 9e9):FireServer(unpack(args))
-    elseif s == "Judgers" then
-        local args = {
-            [1] = 13;
-        }
-        
+    local args = {[1] = ({
+        Goblin = 2, Thugs = 3, GymRats = 4, Veterans = 5, Yakuza = 6, Samurai = 8, Mutants = 7, Animatronics = 10,
+        Ninja = 9, TempleProtectors = 11, Demons = 12, Judgers = 13
+    })[s]}
+    
+    if args[1] then
         game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimSideTask", 9e9):FireServer(unpack(args))
     end
 end
-
 
 -- tables
 
 local powerTps = {}
 local sidetaskTable = {"Goblin", "Thugs", "Gym Rats", "Veterans", "Yakuza", "Samurai", "Mutants", "Animatronics", "Ninja", "Temple Protectors", "Demons", "Judgers"}
 local healthTps = {}
+local defenseTps = {}
+local psychicTps = {}
+local magicTps = {}
+local enemyFolder = {}
+local StoresFolder = {}
+local WandsFolder = {}
+local WeightsFolder = {}
+local SideQuestsFolder = {}
+
+local function isInTable(value, tbl)
+    for _, v in ipairs(tbl) do
+        if v == value then
+            return true
+        end
+    end
+    return false
+end
+
+local function sortAndInsert(folder, tableToInsert)
+    local items = folder:GetChildren()
+    table.sort(items, function(a, b)
+        return tonumber(a.Name) < tonumber(b.Name)
+    end)
+
+    for _, item in ipairs(items) do
+        if not isInTable(item.Name, tableToInsert) then
+            table.insert(tableToInsert, item.Name)
+        end
+    end
+end
+
+-- Wands
+local FolderWands = game:GetService("Workspace").Pads.Wands
+sortAndInsert(FolderWands, WandsFolder)
+
+-- Side Tasks
+local FolderSideTask = game:GetService("Workspace").Pads.SideTasks
+sortAndInsert(FolderSideTask, SideQuestsFolder)
+
+-- Weights
+local Weightsfold = game:GetService("Workspace").Pads.Weight
+sortAndInsert(Weightsfold, WeightsFolder)
+
+-- Store Items
+local FolderStore = game:GetService("Workspace").Pads.Store
+sortAndInsert(FolderStore, StoresFolder)
+
+-- Enemies
+local FolderEnemy = enemies
+sortAndInsert(FolderEnemy, enemyFolder)
+
+-- Power Training Areas
+local folderPower = game:GetService("ReplicatedStorage").TrainingAreas.Power
+sortAndInsert(folderPower, powerTps)
+
+-- Health Training Areas
+local folderHealth = game:GetService("ReplicatedStorage").TrainingAreas.Health
+sortAndInsert(folderHealth, healthTps)
+
+-- Defense Training Areas
+local folderDefense = game:GetService("ReplicatedStorage").TrainingAreas.Defense
+sortAndInsert(folderDefense, defenseTps)
+
+-- Psychics Training Areas
+local folderPsychics = game:GetService("ReplicatedStorage").TrainingAreas.Psychics
+sortAndInsert(folderPsychics, psychicTps)
+
+-- Magic Training Areas
+local folderMagic = game:GetService("ReplicatedStorage").TrainingAreas.Magic
+sortAndInsert(folderMagic, magicTps)
+
+-- library
+
+local repo = 'https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/'
+
+local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+
+local Window = Library:CreateWindow({
+    Title = 'BTDCBUUS - Super Power League',
+    Center = true,
+    AutoShow = true,
+    TabPadding = 8,
+    MenuFadeTime = 0.2,
+    RoundedCorners = true,  -- Adicionar cantos arredondados
+    BackgroundColor = Color3.fromRGB(30, 30, 40),  -- Cor de fundo
+    BorderColor = Color3.fromRGB(255, 255, 255),  -- Cor da borda
+    BorderThickness = 2  -- Espessura da borda
+})
+
+local Tabs = {
+    Main = Window:AddTab('Main'),
+    QuestTab = Window:AddTab("Quests"),
+    TPS = Window:AddTab('Teleports'),
+    Visuals = Window:AddTab('Other'),
+    UI = Window:AddTab('UI'),
+}
+
+local MainTaskBox = Tabs.QuestTab:AddRightGroupbox("Main Task")
+local DishesFarmBox = Tabs.QuestTab:AddRightGroupbox("Dishes Farm")
+local WeeklyTaskClaim = Tabs.QuestTab:AddLeftGroupbox("Weekly Task")
+local DailyTaskClaim = Tabs.QuestTab:AddLeftGroupbox("Daily Task")
+local DailyGiftClaim = Tabs.QuestTab:AddRightGroupbox("DailyGift Claim")
+local EnemySideTask = Tabs.QuestTab:AddLeftGroupbox("Auto Enemy SideTask")
+local AutoFarmBox = Tabs.Main:AddLeftGroupbox('Auto Farm')
+local TPGUI = Tabs.TPS:AddLeftGroupbox('Player TP Gui')
+local AutoWandTp = Tabs.TPS:AddLeftGroupbox('Wand Store TP')
+local AutoWeightTP = Tabs.TPS:AddLeftGroupbox('Weight Store TP')
+local AutoSideTask = Tabs.TPS:AddLeftGroupbox('SideTask TP')
+local AutoStoreTP = Tabs.TPS:AddLeftGroupbox('Store TP')
+local AutoStatBox = Tabs.Main:AddRightGroupbox('Auto Stat')
+local AutoFarmStat = Tabs.Main:AddRightGroupbox('AutoFarm Stat')
+local AreaPowerTeleport = Tabs.TPS:AddRightGroupbox('Area Strength Teleport')
+local AreaHealthTeleport = Tabs.TPS:AddRightGroupbox('Area Health Teleport')
+local AreaImmunityTeleport = Tabs.TPS:AddRightGroupbox('Area Defense Teleport')
+local AreaPsychicsTeleport = Tabs.TPS:AddRightGroupbox('Area Psychics Teleport')
+local AreaMagicTeleport = Tabs.TPS:AddRightGroupbox('Area Magic Teleport')
+local Fly = Tabs.Main:AddRightGroupbox('Fly (F)')
+local MiscSec = Tabs.Main:AddRightGroupbox('Anti Afk')
+local RegClick = Tabs.Main:AddRightGroupbox('Auto Clicker (G)')
+local Spinny = Tabs.Main:AddRightGroupbox('SpinBot')
+local AreaFarmBox = Tabs.Main:AddLeftGroupbox('Area Farm')
+local EspMap = Tabs.Visuals:AddLeftGroupbox('ESP Map')
+local EspPlr = Tabs.Visuals:AddLeftGroupbox('ESP Player Box')
+local EspPlrN = Tabs.Visuals:AddLeftGroupbox('ESP Player Name')
+local AutoGrabDrops = Tabs.Visuals:AddRightGroupbox('Auto Grab Drops')
+local KillAura = Tabs.Visuals:AddRightGroupbox('Kill Aura')
+local FOVChanger = Tabs.Visuals:AddRightGroupbox('FOV Changer')
+local EspSkeleton = Tabs.Visuals:AddLeftGroupbox('ESP Player Skeleton') -- Nova opção adicionada
+
+EspSkeleton:AddToggle("ESPSkeleton", { Text = "ESP Player Skeleton" })
+
+Toggles.ESPSkeleton:OnChanged(function(s)
+    getgenv().ESPSkeleton = s
+end)
 local defenseTps = {}
 local psychicTps = {}
 local magicTps = {}
@@ -387,6 +387,13 @@ local EspPlrN = Tabs.Visuals:AddLeftGroupbox('ESP Player Name')
 local AutoGrabDrops = Tabs.Visuals:AddRightGroupbox('Auto Grab Drops')
 local KillAura = Tabs.Visuals:AddRightGroupbox('Kill Aura')
 local FOVChanger = Tabs.Visuals:AddRightGroupbox('FOV Changer')
+local EspSkeleton = Tabs.Visuals:AddLeftGroupbox('ESP Player Skeleton') -- Nova opção adicionada
+
+EspSkeleton:AddToggle("ESPSkeleton", { Text = "ESP Player Skeleton" })
+
+Toggles.ESPSkeleton:OnChanged(function(s)
+    getgenv().ESPSkeleton = s
+end)
 --local DishesFarm = Tabs.Visuals:AddRightGroupbox('DishesFarm')
 
 local TpGUIButt = TPGUI:AddButton('Load GUI', function()
@@ -1640,21 +1647,85 @@ local function removeESP()
     partDrawings = {}
 end
 
+local function createESPSkeleton(player)
+    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        local humanoidRootPart = player.Character:WaitForChild("HumanoidRootPart")
+        local parts = {"Head", "Torso", "LeftArm", "RightArm", "LeftLeg", "RightLeg"}
+        local lines = {}
+
+        for _, part in pairs(parts) do
+            local line = Drawing.new("Line")
+            line.Visible = false
+            line.Color = Color3.fromRGB(255, 0, 0)
+            line.Thickness = 2
+            lines[part] = line
+        end
+
+        partDrawings[player] = lines
+
+        local function updateESPSkeleton()
+            if not player.Character or not humanoidRootPart.Parent then
+                partDrawings[player] = nil
+                return
+            end
+
+            local function getPartPosition(part)
+                return camera:WorldToViewportPoint(player.Character:FindFirstChild(part).Position)
+            end
+
+            local function drawLine(part1, part2)
+                local line = lines[part1]
+                line.From = Vector2.new(getPartPosition(part1).X, getPartPosition(part1).Y)
+                line.To = Vector2.new(getPartPosition(part2).X, getPartPosition(part2).Y)
+                line.Visible = getgenv().ESPSkeleton
+            end
+
+            drawLine("Head", "Torso")
+            drawLine("Torso", "LeftArm")
+            drawLine("Torso", "RightArm")
+            drawLine("Torso", "LeftLeg")
+            drawLine("Torso", "RightLeg")
+        end
+
+        runService.RenderStepped:Connect(function()
+            if getgenv().ESPSkeleton then
+                updateESPSkeleton()
+            else
+                for _, line in pairs(lines) do
+                    line.Visible = false
+                end
+            end
+        end)
+    end
+end
+
+local function removeESPSkeleton()
+    for player, lines in pairs(partDrawings) do
+        for _, line in pairs(lines) do
+            line:Remove()
+        end
+    end
+    partDrawings = {}
+end
+
 for _, player in pairs(players:GetPlayers()) do
     if player ~= players.LocalPlayer then
         createESPBox(player)
+        createESPSkeleton(player)
     end
 end
 
 players.PlayerAdded:Connect(function(player)
     if player ~= players.LocalPlayer then
         createESPBox(player)
+        createESPSkeleton(player)
     end
 end)
 
 players.PlayerRemoving:Connect(function(player)
     if partDrawings[player] then
         removeESP()
+        removeESPSkeleton()
     end
 end)
 
@@ -1666,6 +1737,17 @@ game:GetService("RunService").Heartbeat:Connect(function()
             if player ~= players.LocalPlayer then
                 if not partDrawings[player] then
                     createESPBox(player)
+                end
+            end
+        end
+    end
+    if not getgenv().ESPSkeleton then
+        removeESPSkeleton()
+    else
+        for _, player in pairs(players:GetPlayers()) do
+            if player ~= players.LocalPlayer then
+                if not partDrawings[player] then
+                    createESPSkeleton(player)
                 end
             end
         end
@@ -1783,8 +1865,6 @@ game:GetService("RunService").Heartbeat:Connect(function()
     end
 end)
 
-
-
 RedeemCodes()
 
 runService.Heartbeat:Connect(function()
@@ -1796,7 +1876,6 @@ end)
 
 local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
 local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
-
 
 ThemeManager:SetLibrary(Library)
 SaveManager:SetLibrary(Library)
@@ -1821,7 +1900,6 @@ function GUI()
     local TweenService = game:GetService("TweenService")
     local LocalPlayer = Players.LocalPlayer
     local UserInputService = game:GetService("UserInputService")
-    
     local Executor = "Unknown"
     if identifyexecutor then
         Executor = identifyexecutor()
