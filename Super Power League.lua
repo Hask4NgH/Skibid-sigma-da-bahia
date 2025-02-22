@@ -1,7 +1,7 @@
 -- loader
 
 game.StarterGui:SetCore("SendNotification", {
-    Title = "BTDCBUUS";
+    Title = "H4 Edition";
     Text = "Loading...";
     Duration = 3;
 })
