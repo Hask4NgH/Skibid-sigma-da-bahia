@@ -211,10 +211,10 @@ local Window = Library:CreateWindow({
     AutoShow = true,
     TabPadding = 8,
     MenuFadeTime = 0.2,
-    RoundedCorners = true,  -- Adicionar cantos arredondados
-    BackgroundColor = Color3.fromRGB(30, 30, 40),  -- Cor de fundo
-    BorderColor = Color3.fromRGB(255, 255, 255),  -- Cor da borda
-    BorderThickness = 2  -- Espessura da borda
+    RoundedCorners = true,
+    BackgroundColor = Color3.fromRGB(30, 30, 40),
+    BorderColor = Color3.fromRGB(255, 255, 255),
+    BorderThickness = 2
 })
 
 local Tabs = {
@@ -255,7 +255,7 @@ local EspPlrN = Tabs.Visuals:AddLeftGroupbox('ESP Player Name')
 local AutoGrabDrops = Tabs.Visuals:AddRightGroupbox('Auto Grab Drops')
 local KillAura = Tabs.Visuals:AddRightGroupbox('Kill Aura')
 local FOVChanger = Tabs.Visuals:AddRightGroupbox('FOV Changer')
-local EspSkeleton = Tabs.Visuals:AddLeftGroupbox('ESP Player Skeleton') -- Nova opção adicionada
+local EspSkeleton = Tabs.Visuals:AddLeftGroupbox('ESP Player Skeleton')
 
 EspSkeleton:AddToggle("ESPSkeleton", { Text = "ESP Player Skeleton" })
 
@@ -387,14 +387,13 @@ local EspPlrN = Tabs.Visuals:AddLeftGroupbox('ESP Player Name')
 local AutoGrabDrops = Tabs.Visuals:AddRightGroupbox('Auto Grab Drops')
 local KillAura = Tabs.Visuals:AddRightGroupbox('Kill Aura')
 local FOVChanger = Tabs.Visuals:AddRightGroupbox('FOV Changer')
-local EspSkeleton = Tabs.Visuals:AddLeftGroupbox('ESP Player Skeleton') -- Nova opção adicionada
+local EspSkeleton = Tabs.Visuals:AddLeftGroupbox('ESP Player Skeleton')
 
 EspSkeleton:AddToggle("ESPSkeleton", { Text = "ESP Player Skeleton" })
 
 Toggles.ESPSkeleton:OnChanged(function(s)
     getgenv().ESPSkeleton = s
 end)
---local DishesFarm = Tabs.Visuals:AddRightGroupbox('DishesFarm')
 
 local TpGUIButt = TPGUI:AddButton('Load GUI', function()
     GUI()
@@ -431,54 +430,35 @@ Toggles.AutoFarm:OnChanged(function(s)
             if health < maxHealth * getgenv().HealthCheckSlider / 100 and getgenv().HealthCheck then
                 player.Character.HumanoidRootPart.CFrame = CFrame.new(-238.32908630371094, 99.5722427368164, 250.33648681640625)
 
-                while health < maxHealth do
-                    task.wait()
-                    player.Character.HumanoidRootPart.CFrame = CFrame.new(-238.32908630371094, 99.5722427368164, 250.33648681640625)
-                    health = chr.Humanoid.Health
-                    if getgenv().AutoFarm == false then
-                        break
-                    end
-                end
-            end
-        else
-            warn("Player's character or HumanoidRootPart not found.")
-        end
-        local folderName = getgenv().FolderName
-        local enemy = GetClosestEnemy(folderName)
-    
-        if enemy and enemy:FindFirstChild("HumanoidRootPart") and enemy:FindFirstChild("Dead").Value ~= true then 
-                local enemyPos = enemy.HumanoidRootPart.Position
-                local behindPos = enemyPos - (enemy.HumanoidRootPart.CFrame.LookVector * getgenv().OffsetSlider)
-                behindPos = Vector3.new(behindPos.X, enemyPos.Y, behindPos.Z)
-                if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                    player.Character.HumanoidRootPart.CFrame = CFrame.new(behindPos, enemyPos)
-                end
-                if getgenv().MoreDamage then
-                    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.E, false, game)
-                end
-                task.wait(0.1)
-                game:GetService("ReplicatedStorage").Events.Other.Ability:InvokeServer("Weapon")
-        end
+while health < maxHealth do
+    task.wait()
+    player.Character.HumanoidRootPart.CFrame = CFrame.new(-238.32908630371094, 99.5722427368164, 250.33648681640625)
+    health = chr.Humanoid.Health
+    if getgenv().AutoFarm == false then
+        break
     end
-    
-       
-end)
+end
+end
+else
+    warn("Player's character or HumanoidRootPart not found.")
+end
+local folderName = getgenv().FolderName
+local enemy = GetClosestEnemy(folderName)
 
---[[
-    game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimMainTask", 9e9):FireServer(1)
-]]
-
---[[
-    game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("StartMainTask", 9e9):FireServer("MainTask")
-]] 
-
---[[
-local args = {
-    [1] = 1;
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimWeeklyTask", 9e9):FireServer(unpack(args))
-]]
+if enemy and enemy:FindFirstChild("HumanoidRootPart") and enemy:FindFirstChild("Dead").Value ~= true then 
+    local enemyPos = enemy.HumanoidRootPart.Position
+    local behindPos = enemyPos - (enemy.HumanoidRootPart.CFrame.LookVector * getgenv().OffsetSlider)
+    behindPos = Vector3.new(behindPos.X, enemyPos.Y, behindPos.Z)
+    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(behindPos, enemyPos)
+    end
+    if getgenv().MoreDamage then
+        VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.E, false, game)
+    end
+    task.wait(0.1)
+    game:GetService("ReplicatedStorage").Events.Other.Ability:InvokeServer("Weapon")
+end
+end
 
 MainTaskBox:AddToggle("MaintASkStart", { Text = "MainTask Start" })
 
@@ -516,7 +496,6 @@ Toggles.DishesFarm:OnChanged(function(s)
     end
 end)
 
-
 MainTaskBox:AddLabel('-----------------------')
 
 MainTaskBox:AddToggle("QuestClaim", { Text = "MainTask Claim" })
@@ -528,7 +507,6 @@ Toggles.QuestClaim:OnChanged(function(s)
         task.wait(6)
     end
 end)
-
 
 WeeklyTaskClaim:AddToggle("WeeklyTaskClaim", { Text = "WeeklyTask Claim" })
 
@@ -582,8 +560,6 @@ Toggles.DailyGiftClaim:OnChanged(function(s)
         task.wait(300)
     end
 end)
-
-
 
 AutoFarmBox:AddLabel('--------')
 
@@ -674,20 +650,20 @@ AutoStatBox:AddToggle("AutoStat", { Text = "Enabled" })
 Toggles.AutoStat:OnChanged(function(s)
     getgenv().AutoStat = s
     while getgenv().AutoStat do
-            task.wait(0.2)
-            if getgenv().AutoStatSelect == "Strength" then
-                UpgradeStat(1)
-            elseif getgenv().AutoStatSelect == "Health" then
-                UpgradeStat(2)
-            elseif getgenv().AutoStatSelect == "Defense" then
-                UpgradeStat(3)
-            elseif getgenv().AutoStatSelect == "Psychic" then
-                UpgradeStat(4)
-            elseif getgenv().AutoStatSelect == "Magic" then
-                UpgradeStat(5)
-            elseif getgenv().AutoStatSelect == "Mobility" then
-                UpgradeStat(6)
-            end
+        task.wait(0.2)
+        if getgenv().AutoStatSelect == "Strength" then
+            UpgradeStat(1)
+        elseif getgenv().AutoStatSelect == "Health" then
+            UpgradeStat(2)
+        elseif getgenv().AutoStatSelect == "Defense" then
+            UpgradeStat(3)
+        elseif getgenv().AutoStatSelect == "Psychic" then
+            UpgradeStat(4)
+        elseif getgenv().AutoStatSelect == "Magic" then
+            UpgradeStat(5)
+        elseif getgenv().AutoStatSelect == "Mobility" then
+            UpgradeStat(6)
+        end
     end
 end)
 
@@ -1145,7 +1121,6 @@ AutoGrabDrops:AddSlider('SpeedGrab', {
     end
 })
 
-
 getgenv().SpinBot = false
 
 local spinning = false
@@ -1177,103 +1152,6 @@ Toggles.AuraKill:OnChanged(function(s)
     getgenv().KillAura  = s
 end)
 
---[[DishesFarm:AddToggle("DishesFarm", { Text = "Enabled" })
-
-Toggles.DishesFarm:OnChanged(function(s)
-    getgenv().DoDishes  = s
-end)
-
-local player = game.Players.LocalPlayer
-local playersService = game:GetService("Players")
-local replicatedStorage = game:GetService("ReplicatedStorage")
-local events = replicatedStorage.Events.Other
-
-local function getPlayerStats()
-    local playerData = replicatedStorage.Data:FindFirstChild(player.Name)
-    if playerData then
-        return playerData:FindFirstChild("Stats")
-    end
-    return nil
-end
-
-local function hasDirtyDishes()
-    local tempValues = playersService[player.Name]:FindFirstChild("TempValues")
-    if tempValues then
-        local dirtyDishes = tempValues:FindFirstChild("DirtyDishes")
-        if dirtyDishes and dirtyDishes.Value > 0 then
-            return true
-        end
-    end
-    return false
-end
-
-local function checkDishesProgress()
-    local tempValues = playersService[player.Name]:FindFirstChild("TempValues")
-    if tempValues then
-        local dishesProgress = tempValues:FindFirstChild("DishesProgress")
-        if dishesProgress and dishesProgress.Value ~= 0 then
-            return true
-        end
-    end
-    return false
-end
-
-if checkDishesProgress() then
-    print("DishesProgress is not 0. Canceling task.")
-    events.CancelTask:FireServer(1)
-end
-
-local taskInProgress = false
-
-local function startCleaningDishes()
-    if taskInProgress then
-        return
-    end
-
-    local stats = getPlayerStats()
-    if not stats then
-        warn("Stats not found for player.")
-        return
-    end
-
-    if not hasDirtyDishes() then
-        warn("No dirty dishes available.")
-        return
-    end
-
-    taskInProgress = true
-    local startCount = stats.DishesCleaned.Value
-    events.StartSideTask:FireServer(1)
-    task.wait(0.2)
-    repeat
-        events.CleanDishes:FireServer()
-        wait(0.5)
-    until stats.DishesCleaned.Value >= startCount + 10
-
-    print("Dishes cleaned. Claiming side task...")
-    events.ClaimSideTask:FireServer(1)
-    wait(0.5)
-    events.StartSideTask:FireServer(1)
-
-    taskInProgress = false
-end
-
-if not checkDishesProgress() then
-    if getgenv().DoDishes and not taskInProgress then
-        if hasDirtyDishes() then
-            startCleaningDishes()
-        elseif not hasDirtyDishes() then
-            print("Waiting for dirty dishes...")
-        end
-    end
-end
-
-
-]]
-
-
-
-
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -1302,16 +1180,12 @@ game:GetService("RunService").Heartbeat:Connect(function()
     end
 end)
 
--- UI Settings
-
 local MenuGroup = Tabs.UI:AddLeftGroupbox('Menu')
 
 MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'RightShift', NoUI = true, Text = 'Menu keybind' })
 MenuGroup:AddButton('Unload', function() Library:Unload() end)
 
 Library.ToggleKeybind = Options.MenuKeybind
-
--- whoevers this is ty
 
 local flying = false
 local maxdistance = 100000000000000
@@ -1446,7 +1320,6 @@ AreaFarmBox:AddDropdown('AreaFArmDROp', {
 
 AreaFarmBox:AddLabel('------------')
 
-
 numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
 
 AreaFarmBox:AddDropdown('AreaFArmDROp', {
@@ -1459,9 +1332,6 @@ AreaFarmBox:AddDropdown('AreaFArmDROp', {
         getgenv().AreaZone = Value
     end
 })
-
-
--- notif loaded
 
 task.wait(1)
 
@@ -1536,7 +1406,6 @@ local function createESPBox(part)
     end
 end
 
-
 local function removeESP()
     for part, lines in pairs(partDrawings) do
         for _, line in pairs(lines) do
@@ -1559,7 +1428,7 @@ game:GetService("RunService").Heartbeat:Connect(function()
         removeESP()
     else
         for _, part in pairs(mapDropsFolder:GetChildren()) do
-            if part:IsA("BasePart") and part:FindFirstChild("ID") then
+                       if part:IsA("BasePart") and part:FindFirstChild("ID") then
                 if not partDrawings[part] then
                     createESPBox(part)
                 end
@@ -2043,7 +1912,8 @@ function GUI()
         wait(0.5)
     
         local NotificationFrame = Instance.new("Frame")
-        NotificationFrame.Size = UDim2.new(0, 300, 0, 100)
+        NotificationFrame.Size = UDim2.new(0,
+                    300, 0, 100)
         NotificationFrame.Position = UDim2.new(1, -310, 1, -110)
         NotificationFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
         NotificationFrame.Parent = ScreenGui
@@ -2113,9 +1983,3 @@ while task.wait() do
         game:GetService("Players").LocalPlayer.TempValues.DeathMessage.Value = "Stop cheating..."
     end
 end
-
---[[[
-local args = {}
-
-game:GetService("ReplicatedStorage"):WaitForChild("Events", 9e9):WaitForChild("Other", 9e9):WaitForChild("ClaimDaily", 9e9):FireServer(unpack(args))
-]]
